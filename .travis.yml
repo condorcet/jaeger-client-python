@@ -1,6 +1,6 @@
 sudo: required
 
-dist: trusty
+dist: xenial
 
 language: python
 
@@ -12,6 +12,7 @@ matrix:
     env: CROSSDOCK=1
   - python: '3.5'
   - python: '3.6'
+  - python: '3.7'
 
 services:
   - docker
