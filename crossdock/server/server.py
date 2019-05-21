@@ -44,7 +44,7 @@ tracer = Tracer(
     service_name='python',
     reporter=NullReporter(),
     sampler=ConstSampler(decision=True),
-    scope_manager=TornadoScopeManager)
+    scope_manager=TornadoScopeManager())
 opentracing.tracer = tracer
 
 
