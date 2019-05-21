@@ -31,6 +31,7 @@ from jaeger_client.sampler import RemoteControlledSampler, ConstSampler
 from jaeger_client.reporter import Reporter
 from jaeger_client.throttler import RemoteThrottler
 from jaeger_client.tracer import Tracer
+from opentracing.scope_managers.tornado import TornadoScopeManager
 
 config = {
     'service_name': 'crossdock-python',
@@ -88,7 +89,8 @@ class EndToEndHandler(object):
             service_name=cfg.service_name,
             reporter=reporter,
             sampler=ConstSampler(decision=True),
-            throttler=throttler
+            throttler=throttler,
+            scope_manager=TornadoScopeManager()
         )
 
         self._tracers = {
