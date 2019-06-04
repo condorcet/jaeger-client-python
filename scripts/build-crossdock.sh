@@ -22,8 +22,6 @@ docker login -u $DOCKER_USER -p $DOCKER_PASS
 
 set -x
 
-echo $TORNADO
-
 docker build --build-arg tornado=$TORNADO -f crossdock/Dockerfile -t $REPO:$COMMIT .
 
 docker tag $REPO:$COMMIT $REPO:$TAG
