@@ -1,7 +1,8 @@
 FROM python:2.7
 
+ARG tornado
 ENV APPDIR /usr/src/app/
-ENV TORNADO=">=4,<5"
+ENV TORNADO=$tornado
 RUN mkdir -p ${APPDIR}
 WORKDIR ${APPDIR}
 
