@@ -30,7 +30,9 @@ env:
 matrix:
   include:
   - python: "2.7"
-    env: TORNADO=">=4,<5" CROSSDOCK=1
+    env: TORNADO=">=4,<5" CROSSDOCK=1 CROSSDOCK_TORNADO=">=4,<5"
+  - python: "2.7"
+    env: TORNADO=">=5,<6" CROSSDOCK=1 CROSSDOCK_TORNADO=">=4,<5"
   - python: "2.7"
     env: TORNADO=">=5,<6" COVER=1
   - python: "3.5"
@@ -53,8 +55,8 @@ matrix:
 
 install:
   - make bootstrap
+  - pip install "tornado$TORNADO"
   - if [ "$CROSSDOCK" == "1" ]; then bash ./scripts/install-crossdock-deps.sh ; fi
-  - pip install -q "tornado$TORNADO"
 
 script:
   - if [ "$CROSSDOCK" != "1" ]; then make test_ci ; fi
