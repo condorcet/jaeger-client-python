@@ -1,8 +1,7 @@
 FROM python:2.7
 
 ENV APPDIR /usr/src/app/
-ARG crossdock_tornado
-ENV CROSSDOCK_TORNADO=$crossdock_tornado
+ENV TORNADO=">=4,<5"
 RUN mkdir -p ${APPDIR}
 WORKDIR ${APPDIR}
 
@@ -21,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements-dev.txt
 RUN pip install --no-cache-dir -r requirements-tests.txt
 RUN pip install --no-cache-dir -r requirements.txt
 RUN python setup.py install
-RUN pip install --no-cache-dir "tornado${CROSSDOCK_TORNADO}"
+RUN pip install --no-cache-dir "tornado${TORNADO}"
 
 COPY crossdock ${APPDIR}/crossdock/
 COPY crossdock/setup_crossdock.py ${APPDIR}
